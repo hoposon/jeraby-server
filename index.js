@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 
-// const { verifyRecaptcha } = require('./middlewares/verifyRecaptcha');
+const { verifyRecaptcha } = require('./middlewares/verifyRecaptcha');
 const { sendEmail } = require('./route-handlers/send-email');
 
 
@@ -13,8 +13,8 @@ const { sendEmail } = require('./route-handlers/send-email');
 //   res.send(`Hello ${name}!`);
 // });
 
-// app.post('/send-email', verifyRecaptcha, sendEmail);
-app.post('/send-email', sendEmail);
+app.post('/send-email', verifyRecaptcha, sendEmail);
+// app.post('/send-email', sendEmail);
 
 const port = parseInt(process.env.PORT) || 8080;
 
